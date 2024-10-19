@@ -1,0 +1,15 @@
+---
+- hosts: localhost
+  become: yes
+  tasks:
+    - name: Install development libraries and tools
+      import_playbook: 00_install_libraries.yml
+
+    - name: Install packages
+      import_playbook: 01_install_packages.yml
+
+    - name: Install gnome extensions
+      import_playbook: 02_install_gnome_extensions.yml
+
+    - name: Install fonts
+      import_playbook: 03_install_fonts.yml

@@ -1,0 +1,67 @@
+---
+- hosts: localhost
+  become: yes
+  tasks:
+    # Ensure essential packages are installed from pacman
+    - name: Install pacman packages
+      pacman:
+        name:
+          - 1password
+          - bat
+          - btop
+          - docker
+          - docker-compose
+          - exfat-utils
+          - eza
+          - fastfetch
+          - flameshot
+          - font-manager
+          - ffmpeg
+          - lazydocker
+          - micro
+          - mpv
+          - neovim
+          - pinta
+          - tldr
+          - vlc
+          - xournalpp
+          - zsh
+        state: present
+
+    # Ensure yay (AUR helper) is installed
+    - name: Ensure yay is installed
+      pacman:
+        name: yay
+        state: present
+
+    # Install AUR packages using yay
+    - name: Install AUR packages
+      aur:
+        name:
+          - obsidian
+          - spotify
+          - visual-studio-code-bin
+          - signal-desktop
+        state: present
+
+    # Enable and start Docker service
+    - name: Enable and start Docker
+      systemd:
+        name: docker
+        enabled: yes
+        state: started
+
+    # Ensure zsh is set as the default shell for the user
+    - name: Ensure zsh is the default shell
+      user:
+        name: "{{ lookup('env', 'USER') }}"
+        shell: /bin/zsh
+
+    # Install Oh My Zsh
+    - name: Install Oh My Zsh
+      become: no
+      shell: |
+        RUNZSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+      args:
+        executable: /bin/zsh
+      when: not ansible_facts.env.ZSH  # Only installs if Oh My Zsh isn't already present

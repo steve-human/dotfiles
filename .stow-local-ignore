@@ -1,0 +1,5 @@
+# Ignore the install script
+install.sh
+
+# Ignore ansible directory
+ansible/

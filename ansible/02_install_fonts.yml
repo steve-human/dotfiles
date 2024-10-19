@@ -1,0 +1,78 @@
+---
+- hosts: localhost
+  become: yes
+  tasks:
+    # Create fonts directory if it doesn't exist
+    - name: Ensure the local fonts directory exists
+      file:
+        path: ~/.local/share/fonts
+        state: directory
+        mode: '0755'
+
+    # Cascadia Mono
+    - name: Download Cascadia Mono Nerd Font
+      get_url:
+        url: "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/CascadiaMono.zip"
+        dest: /tmp/CascadiaMono.zip
+
+    - name: Unzip Cascadia Mono Nerd Font
+      unarchive:
+        src: /tmp/CascadiaMono.zip
+        dest: ~/.local/share/fonts/CaskaydiaMono
+        remote_src: yes
+
+    - name: Install Cascadia Mono Nerd Font (TTF)
+      shell: |
+        find ~/.local/share/fonts/CaskaydiaMono -name "*.ttf" -exec mv {} ~/.local/share/fonts/ \;
+
+    # Fira Mono
+    - name: Download Fira Mono Nerd Font
+      get_url:
+        url: "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraMono.zip"
+        dest: /tmp/FiraMono.zip
+
+    - name: Unzip Fira Mono Nerd Font
+      unarchive:
+        src: /tmp/FiraMono.zip
+        dest: ~/.local/share/fonts/FiraMono
+        remote_src: yes
+
+    - name: Install Fira Mono Nerd Font (OTF)
+      shell: |
+        find ~/.local/share/fonts/FiraMono -name "*.otf" -exec mv {} ~/.local/share/fonts/ \;
+
+    # JetBrains Mono
+    - name: Download JetBrains Mono Nerd Font
+      get_url:
+        url: "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip"
+        dest: /tmp/JetBrainsMono.zip
+
+    - name: Unzip JetBrains Mono Nerd Font
+      unarchive:
+        src: /tmp/JetBrainsMono.zip
+        dest: ~/.local/share/fonts/JetBrainsMono
+        remote_src: yes
+
+    - name: Install JetBrains Mono Nerd Font (TTF)
+      shell: |
+        find ~/.local/share/fonts/JetBrainsMono -name "*.ttf" -exec mv {} ~/.local/share/fonts/ \;
+
+    # Meslo
+    - name: Download Meslo Nerd Font
+      get_url:
+        url: "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Meslo.zip"
+        dest: /tmp/Meslo.zip
+
+    - name: Unzip Meslo Nerd Font
+      unarchive:
+        src: /tmp/Meslo.zip
+        dest: ~/.local/share/fonts/Meslo
+        remote_src: yes
+
+    - name: Install Meslo Nerd Font (TTF)
+      shell: |
+        find ~/.local/share/fonts/Meslo -name "*.ttf" -exec mv {} ~/.local/share/fonts/ \;
+
+    # Refresh font cache
+    - name: Refresh font cache
+      command: fc-cache -fv

@@ -1,0 +1,107 @@
+---
+- hosts: localhost
+  become: yes
+  tasks:
+    # Install necessary GNOME shell tools and dependencies
+    - name: Install GNOME shell tools
+      pacman:
+        name:
+          - gnome-shell-extensions
+          - gnome-shell-extension-tool
+          - unzip
+        state: present
+
+    # Install the Dash to Dock extension
+    - name: Install Dash to Dock extension
+      get_url:
+        url: https://extensions.gnome.org/extension-data/dash-to-dockmicxgx.gmail.com.v74.shell-extension.zip
+        dest: /tmp/dash-to-dock.zip
+
+    - name: Extract and install Dash to Dock
+      unarchive:
+        src: /tmp/dash-to-dock.zip
+        dest: ~/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com
+        remote_src: yes
+
+    - name: Enable Dash to Dock
+      command: gnome-extensions enable dash-to-dock@micxgx.gmail.com
+
+    # Install Blur My Shell extension
+    - name: Install Blur My Shell extension
+      get_url:
+        url: https://extensions.gnome.org/extension-data/blur-my-shellaunetx.v18.shell-extension.zip
+        dest: /tmp/blur-my-shell.zip
+
+    - name: Extract and install Blur My Shell
+      unarchive:
+        src: /tmp/blur-my-shell.zip
+        dest: ~/.local/share/gnome-shell/extensions/blur-my-shell@aunetx
+        remote_src: yes
+
+    - name: Enable Blur My Shell
+      command: gnome-extensions enable blur-my-shell@aunetx
+
+    # Install AppIndicator Support extension
+    - name: Install AppIndicator Support extension
+      get_url:
+        url: https://extensions.gnome.org/extension-data/appindicatorsupportrgcjonas.gmail.com.v43.shell-extension.zip
+        dest: /tmp/appindicatorsupport.zip
+
+    - name: Extract and install AppIndicator Support
+      unarchive:
+        src: /tmp/appindicatorsupport.zip
+        dest: ~/.local/share/gnome-shell/extensions/appindicatorsupport@rgcjonas.gmail.com
+        remote_src: yes
+
+    - name: Enable AppIndicator Support
+      command: gnome-extensions enable appindicatorsupport@rgcjonas.gmail.com
+
+    # Install Simple Workspaces Bar extension
+    - name: Install Simple Workspaces Bar extension
+      get_url:
+        url: https://extensions.gnome.org/extension-data/simple-workspaces-barnull-git.v15.shell-extension.zip
+        dest: /tmp/simple-workspaces-bar.zip
+
+    - name: Extract and install Simple Workspaces Bar
+      unarchive:
+        src: /tmp/simple-workspaces-bar.zip
+        dest: ~/.local/share/gnome-shell/extensions/simple-workspaces-bar@null-git
+        remote_src: yes
+
+    - name: Enable Simple Workspaces Bar
+      command: gnome-extensions enable simple-workspaces-bar@null-git
+
+    # Install Space Bar extension
+    - name: Install Space Bar extension
+      get_url:
+        url: https://extensions.gnome.org/extension-data/space-barluchrioh.v8.shell-extension.zip
+        dest: /tmp/space-bar.zip
+
+    - name: Extract and install Space Bar
+      unarchive:
+        src: /tmp/space-bar.zip
+        dest: ~/.local/share/gnome-shell/extensions/space-bar@luchrioh
+        remote_src: yes
+
+    - name: Enable Space Bar
+      command: gnome-extensions enable space-bar@luchrioh
+
+    # Install Tactile extension
+    - name: Install Tactile extension
+      get_url:
+        url: https://extensions.gnome.org/extension-data/tactilelundal.io.v10.shell-extension.zip
+        dest: /tmp/tactile.zip
+
+    - name: Extract and install Tactile
+      unarchive:
+        src: /tmp/tactile.zip
+        dest: ~/.local/share/gnome-shell/extensions/tactile@lundal.io
+        remote_src: yes
+
+    - name: Enable Tactile
+      command: gnome-extensions enable tactile@lundal.io
+
+    # Reload GNOME shell to apply the changes
+    - name: Reload GNOME shell
+      shell: |
+        DISPLAY=:0 gnome-shell --replace &

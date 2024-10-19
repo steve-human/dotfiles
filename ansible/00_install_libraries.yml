@@ -1,0 +1,32 @@
+---
+- hosts: localhost
+  become: yes
+  tasks:
+    - name: Install development libraries and tools
+      pacman:
+        name:
+          - base-devel
+          - pkgconf
+          - autoconf
+          - bison
+          - clang
+          - rust
+          - openssl
+          - readline
+          - zlib
+          - libyaml
+          - ncurses
+          - libffi
+          - gdbm
+          - jemalloc
+          - vips
+          - imagemagick
+          - mupdf
+          - mupdf-tools
+          - libgtop
+          - clutter
+          - redis
+          - sqlite
+          - mariadb-libs
+          - postgresql-libs
+        state: present
