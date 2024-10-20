@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Neovim
+Comment=Edit text files using Neovim
+Exec=gnome-terminal -- nvim %F
+Terminal=false
+Type=Application
+Icon=nvim
+Categories=Utility;TextEditor;
+Keywords=text;editor;vim;
+MimeType=text/plain;
+StartupNotify=false

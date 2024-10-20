@@ -1,0 +1,36 @@
+---
+- hosts: localhost
+  become: no
+  vars:
+  favorite_apps:
+    - 'firefox.desktop'
+    - 'org.gnome.Terminal.desktop'
+    - 'code.desktop'
+  tasks:
+    - name: Favorite apps
+      shell: gsettings set org.gnome.shell favorite-apps "{{ favorite_apps | to_json }}"
+
+    - name: Workspaces
+      shell: |
+        gsettings set org.gnome.mutter dynamic-workspaces false
+        gsettings set org.gnome.desktop.wm.preferences num-workspaces 6
+        gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-1 "['<Super>1']"
+        gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-2 "['<Super>2']"
+        gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-3 "['<Super>3']"
+        gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-4 "['<Super>4']"
+        gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-5 "['<Super>5']"
+        gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-6 "['<Super>6']"
+
+    - name: Hotkey for flameshot
+      shell: |
+        gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ name 'Flameshot'
+        gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command 'sh -c -- "flameshot gui"'
+        gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ binding '<Control>Print'
+
+    - name: Hotkeys for frequently used apps
+        gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ name 'new firefox'
+        gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ command 'firefox'
+        gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ binding '<Shift><Alt>1'
+        gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ name 'gnome-terminal'
+        gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ command 'gnome-terminal'
+        gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ binding '<Shift><Alt>2'

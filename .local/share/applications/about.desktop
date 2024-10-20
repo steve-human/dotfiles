@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=About
+Comment=System information from Fastfetch
+Exec=gnome-terminal --geometry=100x100 -- bash -c 'fastfetch; read -n 1 -s'
+Terminal=false
+Type=Application
+Icon=archlinux
+Categories=Utility;
+Keywords=system;info;fastfetch;
+StartupNotify=false

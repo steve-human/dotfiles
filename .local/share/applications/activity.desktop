@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Activity
+Comment=System activity
+Exec=gnome-terminal --geometry=100x100 -- btop -t
+Terminal=false
+Type=Application
+Icon=org.gnome.SystemMonitor
+Categories=Utility;
+Keywords=system;info;btop;
+StartupNotify=false
