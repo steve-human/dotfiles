@@ -3,7 +3,7 @@
 	email = 72038071+steve-human@users.noreply.github.com
 	signingKey = ~/.ssh/id_ed25519
 [core]
-	editor = micro
+	editor = nvim
 [init]
 	defaultBranch = main
 [gpg]
