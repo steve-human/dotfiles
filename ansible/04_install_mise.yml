@@ -1,0 +1,39 @@
+---
+- hosts: localhost
+  become: yes
+  tasks:
+    # Step 1: Install Mise
+    - name: Install Mise (Package Manager)
+      shell: |
+        curl -fsSL https://get.mise.sh | sh
+      args:
+        creates: /usr/local/bin/mise  # Prevent re-downloading if already installed
+
+    # Step 2: Ensure Mise is in the PATH
+    - name: Ensure mise is available in the PATH
+      shell: echo 'export PATH="$HOME/.mise/bin:$PATH"' >> ~/.zshrc
+      when: ansible_facts.env.PATH is not search("/.mise/bin")
+
+    # Step 3: Install Node.js using Mise
+    - name: Install Node.js via Mise
+      shell: ~/.mise/bin/mise add node
+      args:
+        creates: ~/.mise/data/node
+
+    # Step 4: Install Ruby using Mise
+    - name: Install Ruby via Mise
+      shell: ~/.mise/bin/mise add ruby
+      args:
+        creates: ~/.mise/data/ruby
+
+    # Step 5: Install Erlang using Mise
+    - name: Install Erlang via Mise
+      shell: ~/.mise/bin/mise add erlang
+      args:
+        creates: ~/.mise/data/erlang
+
+    # Step 6: Install Elixir using Mise
+    - name: Install Elixir via Mise
+      shell: ~/.mise/bin/mise add elixir
+      args:
+        creates: ~/.mise/data/elixir
