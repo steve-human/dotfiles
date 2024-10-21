@@ -12,9 +12,10 @@
           - exfat-utils
           - eza
           - fastfetch
+          - ffmpeg
           - flameshot
           - font-manager
-          - ffmpeg
+          - fragments
           - lazydocker
           - micro
           - mpv
