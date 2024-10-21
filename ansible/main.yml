@@ -13,3 +13,9 @@
 
     - name: Install gnome extensions
       import_playbook: 03_install_gnome_extensions.yml
+
+    - name: Configure gnome
+      import_playbook: 04_configure_gnome.yml
+
+    - name: Install mise
+      import_playbook: 05_install_mise.yml
