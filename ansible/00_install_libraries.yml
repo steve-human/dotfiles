@@ -16,6 +16,7 @@
           - zlib
           - libyaml
           - ncurses
+          - inotify-tools
           - libffi
           - gdbm
           - jemalloc

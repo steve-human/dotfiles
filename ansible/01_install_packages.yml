@@ -25,6 +25,7 @@
           - vlc
           - xournalpp
           - zsh
+          - zeditor
         state: present
 
     # Ensure yay (AUR helper) is installed
@@ -63,4 +64,4 @@
         RUNZSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
       args:
         executable: /bin/zsh
-      when: not ansible_facts.env.ZSH  # Only installs if Oh My Zsh isn't already present
+      when: not ansible_facts.env.ZSH # Only installs if Oh My Zsh isn't already present

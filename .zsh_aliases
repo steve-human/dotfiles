@@ -8,3 +8,4 @@ alias open="xdg-open"
 
 # Editors
 alias ed="micro"
+alias zed="zeditor"
