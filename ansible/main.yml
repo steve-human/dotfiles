@@ -19,3 +19,12 @@
 
     - name: Install mise
       import_playbook: 05_install_mise.yml
+
+    # Asus specific
+    - name: Check if the computer is an ASUS
+      set_fact:
+        is_asus: "{{ 'ASUSTeK' in ansible_facts['manufacturer'] }}"
+
+    - name: Install ASUS tools (if this is an ASUS computer)
+      import_playbook: 06_setup_asus.yml
+      when: is_asus

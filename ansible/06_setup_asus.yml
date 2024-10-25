@@ -1,0 +1,30 @@
+---
+- hosts: localhost
+  become: yes
+  tasks:
+
+    - name: Add ASUS repository signing key and sign it
+      shell: |
+        pacman-key --recv-keys 8F654886F17D497FEFE3DB448B15A6B0E9A3FA35
+        pacman-key --finger 8F654886F17D497FEFE3DB448B15A6B0E9A3FA35
+        pacman-key --lsign-key 8F654886F17D497FEFE3DB448B15A6B0E9A3FA35
+        pacman-key --finger 8F654886F17D497FEFE3DB448B15A6B0E9A3FA35
+
+    - name: Add ASUS repository and update system
+      shell: |
+        echo '[g14]' >> /etc/pacman.conf
+        echo 'Server = https://arch.asus-linux.org' >> /etc/pacman.conf
+        pacman -Syy
+        pacman -Syu --noconfirm
+
+    - name: Install ASUS tools and enable required services
+      shell: |
+        pacman -S --noconfirm asusctl power-profiles-daemon supergfxctl switcheroo-control rog-control-center
+        systemctl enable --now power-profiles-daemon.service
+        systemctl enable --now supergfxd
+        systemctl enable --now switcheroo-control
+
+    - name: Install Bluetooth tools and enable bluetooth service
+      shell: |
+        pacman -S --noconfirm bluez bluez-utils
+        systemctl enable --now bluetooth
