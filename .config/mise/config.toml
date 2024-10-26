@@ -1,0 +1,5 @@
+[tools]
+node = "22"
+elixir = "latest"
+erlang = "latest"
+ruby = "latest"
