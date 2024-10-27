@@ -10,7 +10,7 @@ config.font = wezterm.font('FiraCode Nerd Font Mono')
 config.font_size = 14.0
 
 -- Window appearance and behavior
-config.window_background_opacity = 0.8
+config.window_background_opacity = 0.9
 config.window_decorations = "RESIZE"
 config.window_padding = {
   left = 5,

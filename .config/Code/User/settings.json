@@ -11,5 +11,11 @@
   "workbench.colorTheme": "Tokyo Night",
   "window.titleBarStyle": "custom",
   "editor.fontLigatures": true,
-  "git.openRepositoryInParentFolders": "never"
+  "git.openRepositoryInParentFolders": "never",
+  "liveServer.settings.donotShowInfoMsg": true,
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true
 }
