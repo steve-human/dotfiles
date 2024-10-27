@@ -10,5 +10,6 @@
   "window.menuBarVisibility": "compact",
   "workbench.colorTheme": "Tokyo Night",
   "window.titleBarStyle": "custom",
-  "editor.fontLigatures": true
+  "editor.fontLigatures": true,
+  "git.openRepositoryInParentFolders": "never"
 }
