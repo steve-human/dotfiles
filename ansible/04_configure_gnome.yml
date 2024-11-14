@@ -3,9 +3,9 @@
   become: no
   vars:
   favorite_apps:
-    - 'firefox.desktop'
-    - 'org.gnome.Terminal.desktop'
-    - 'code.desktop'
+    - "firefox.desktop"
+    - "org.gnome.Terminal.desktop"
+    - "code.desktop"
   tasks:
     - name: Favorite apps
       shell: gsettings set org.gnome.shell favorite-apps "{{ favorite_apps | to_json }}"
@@ -35,3 +35,7 @@
         gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ name 'gnome-terminal'
         gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command 'gnome-terminal'
         gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ binding '<Shift><Alt>2'
+
+    - name: Other settings
+      shell: |
+        gsettings set org.gnome.desktop.peripherals.mouse speed 0.2
