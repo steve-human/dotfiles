@@ -1,5 +1,14 @@
 # Ignore the install script
 install.sh
 
+
+.git
+.gitignore
+.gitmodules
+
+^/README.*
+^/LICENSE.*
+^/COPYING
+
 # Ignore ansible directory
 ansible/
